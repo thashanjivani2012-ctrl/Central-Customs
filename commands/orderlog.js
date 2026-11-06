@@ -63,7 +63,7 @@ module.exports = {
             )
             .setTimestamp();
 
-        const orderLogChannelId = 'CHANNEL_ID_WHERE_THE_ORDER_LOG_IS_GOING_TO_BE_SENT'; // Set your log channel ID here
+        const orderLogChannelId = process.env.ORDER_LOG_CHANNEL_ID; // Set your log channel ID here
         const orderLogChannel = interaction.guild.channels.cache.get(orderLogChannelId);
 
         if (!orderLogChannel) {

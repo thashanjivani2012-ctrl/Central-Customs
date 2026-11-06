@@ -16,13 +16,13 @@ module.exports = {
             const userID = interaction.user;
 
             const categories = {
-                general_support: '',
-                high_rank_support: '',
+                general_support: process.env.SUPPORT_GENERAL_CATEGORY_ID || '',
+                high_rank_support: process.env.SUPPORT_HIGH_RANK_CATEGORY_ID || '',
             };
 
             const roles = {
-                general_support: '',
-                high_rank_support: '',
+                general_support: process.env.SUPPORT_GENERAL_ROLE_ID || '',
+                high_rank_support: process.env.SUPPORT_HIGH_RANK_ROLE_ID || '',
             };
 
             const customreplies = {

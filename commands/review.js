@@ -58,7 +58,7 @@ module.exports = {
             )
             .setTimestamp();
 
-        const reviewChannelId = 'CHANNEL_ID_WHERE_THE_REVIEW_IS_GOING_TO_BE_SENT';
+        const reviewChannelId = process.env.REVIEW_CHANNEL_ID;
         const reviewChannel = interaction.guild.channels.cache.get(reviewChannelId);
 
         if (!reviewChannel) {

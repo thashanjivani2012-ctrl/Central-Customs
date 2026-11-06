@@ -39,7 +39,7 @@ const {
             "",
           ];
       
-          const demotechannelid = "";
+          const demotechannelid = process.env.DEMOTE_LOG_CHANNEL_ID || "";
   
       if (!interaction.member.roles.cache.some(role => staffRoleIds.includes(role.id))) {
         return interaction.reply({

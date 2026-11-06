@@ -15,21 +15,21 @@ module.exports = {
             const type = interaction.values[0].toLowerCase();
 
             const categories = {
-                liveryels: '',
-                graphic: '',
-                discord: '',
-                clothing: '',
-                photographs: '',
-                botservices: ''
+                liveryels: process.env.ORDER_LIVERYELS_CATEGORY_ID || '',
+                graphic: process.env.ORDER_GRAPHIC_CATEGORY_ID || '',
+                discord: process.env.ORDER_DISCORD_CATEGORY_ID || '',
+                clothing: process.env.ORDER_CLOTHING_CATEGORY_ID || '',
+                photographs: process.env.ORDER_PHOTOGRAPHS_CATEGORY_ID || '',
+                botservices: process.env.ORDER_BOTSERVICES_CATEGORY_ID || ''
             };
 
             const roles = {
-                liveryels: '',
-                graphic: '',
-                discord: '',
-                clothing: '',
-                photographs: '',
-                botservices: ''
+                liveryels: process.env.ORDER_LIVERYELS_ROLE_ID || '',
+                graphic: process.env.ORDER_GRAPHIC_ROLE_ID || '',
+                discord: process.env.ORDER_DISCORD_ROLE_ID || '',
+                clothing: process.env.ORDER_CLOTHING_ROLE_ID || '',
+                photographs: process.env.ORDER_PHOTOGRAPHS_ROLE_ID || '',
+                botservices: process.env.ORDER_BOTSERVICES_ROLE_ID || ''
             };
 
 
