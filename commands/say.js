@@ -13,9 +13,7 @@ module.exports = {
         .setDescription('The channel to send the message to')
         .setRequired(false)),
   async execute(interaction) {
-    const staffRoleIds = [
-            "",
-          ];
+    const staffRoleIds = [process.env.STAFF_ROLE_ID].filter(Boolean);
           
       if (!interaction.member.roles.cache.some(role => staffRoleIds.includes(role.id))) {
         return interaction.reply({
