@@ -35,9 +35,7 @@ const {
       .setDefaultMemberPermissions(PermissionsBitField.Flags.ManageMessages),
   
     async execute(interaction) {
-        const staffRoleIds = [
-            "",
-          ];
+        const staffRoleIds = [process.env.STAFF_ROLE_ID].filter(Boolean);
       
           const demotechannelid = process.env.DEMOTE_LOG_CHANNEL_ID || "";
   

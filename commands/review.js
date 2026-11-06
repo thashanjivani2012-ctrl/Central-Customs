@@ -29,9 +29,7 @@ module.exports = {
                 .setRequired(true)),
 
     async execute(interaction) {
-        const staffRoleIds = [
-            "",
-          ];
+        const staffRoleIds = [process.env.STAFF_ROLE_ID].filter(Boolean);
           
       if (!interaction.member.roles.cache.some(role => staffRoleIds.includes(role.id))) {
         return interaction.reply({
