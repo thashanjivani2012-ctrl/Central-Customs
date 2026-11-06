@@ -88,8 +88,10 @@ async function InteractionHandler(client, interaction, type) {
     }
 
     try {
-        const botMember = interaction.guild.members.cache.get(client.user.id) ?? await interaction.guild.members.fetch(client.user.id);
-        CheckPermissions(component.clientPerms, botMember);
+        if (component.clientPerms?.length && interaction.guild) {
+            const botMember = interaction.guild.members.me ?? await interaction.guild.members.fetchMe();
+            CheckPermissions(component.clientPerms, botMember);
+        }
     } catch (permissions) {
         await interaction.reply({
             content: `I am missing the following permissions: \`${permissions}\``,
