@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@opentelemetry/api": "^1.10.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.83.0",
     "abbrev": "^1.1.1",
     "agent-base": "^6.0.2",
     "ansi-regex": "^5.0.1",
@@ -149,7 +151,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node --require @opentelemetry/auto-instrumentations-node/register index.js"
   },
   "keywords": [],
   "author": "",
