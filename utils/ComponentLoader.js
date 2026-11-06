@@ -7,8 +7,6 @@ const modules = [
 	'commands',
 	'buttons',
 	'menus',
-	'modals',
-	'messages',
 ];
 
 module.exports = function (client) {
@@ -50,19 +48,12 @@ module.exports = function (client) {
 				}
 
 				switch (module) {
-					case 'messages':
-						if (!data.name) throw 'No name property found';
-						if (!data.description) throw 'No description property found';
-						if (data.cooldown && typeof data.cooldown !== 'number') throw 'Invalid cooldown type - Must be a number (seconds)';
-						addComponent(client[module], data.name, data);
-						break;
 					case 'commands':
 						if (!data.data) throw 'No data property found';
 						addComponent(client[module], data.data.name, data);
 						break;
 					case 'buttons':
 					case 'menus':
-					case 'modals':
 						if (!data.customID) throw 'No custom ID has been set';
 						if (!Array.isArray(data.customID) && typeof data.customID !== 'string') throw 'Invalid custom ID type - Must be string (single) or array (multiple)';
 						addComponent(client[module], data.customID, data);
