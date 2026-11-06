@@ -33,7 +33,7 @@ const {
             "",
           ];
       
-          const logChannelId = "";
+          const logChannelId = process.env.INFRACTION_LOG_CHANNEL_ID || "";
   
       if (!interaction.member.roles.cache.some(role => staffRoleIds.includes(role.id))) {
         return interaction.reply({

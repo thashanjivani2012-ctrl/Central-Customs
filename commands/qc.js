@@ -34,9 +34,9 @@ module.exports = {
         const user = interaction.user;
         const ticketChannel = interaction.options.getChannel('ticketchannel');
 
-        const designRoleId = '';
-        const qcRoleId = '';
-        const qcChannelId = '';
+        const designRoleId = process.env.DESIGN_ROLE_ID || '';
+        const qcRoleId = process.env.QC_ROLE_ID || '';
+        const qcChannelId = process.env.QC_CHANNEL_ID || '';
 
         if (!interaction.member.roles.cache.has(designRoleId)) {
             return interaction.reply({

@@ -2,8 +2,8 @@ require('./utils/ProcessHandlers.js')();
 
 const PREFIX = '-';
 
-const specificChannelId3 = '';
-const specificChannelId = '';
+const specificChannelId3 = process.env.SUPPORT_PANEL_CHANNEL_ID || '';
+const specificChannelId = process.env.ORDER_PANEL_CHANNEL_ID || '';
 
 const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder } = require(`discord.js`);
 
@@ -240,10 +240,10 @@ async function closeTicket(interaction, client) {
     });
 
     const logChannelFiles = await guild.channels
-        .fetch("")
+        .fetch(process.env.TICKET_FILES_CHANNEL_ID || "0")
         .catch(() => null);
     const logChannelTranscripts = await guild.channels
-        .fetch("")
+        .fetch(process.env.TICKET_TRANSCRIPTS_CHANNEL_ID || "0")
         .catch(() => null);
 
     if (!logChannelFiles || !logChannelTranscripts) {
@@ -340,7 +340,7 @@ client.on("interactionCreate", async (interaction) => {
     const designerId = user.id;
     const currentName = channel.name;
 
-    const allowedRoleIds = ["", ""];
+    const allowedRoleIds = [process.env.CLAIM_ROLE_ID_1, process.env.CLAIM_ROLE_ID_2].filter(Boolean);
     const guild = interaction.guild;
 
     if (channelLocks.has(channel.id)) {
@@ -489,7 +489,7 @@ connectDatabase();
 
 client.on("guildMemberAdd", async (member) => {
     const guild = member.guild;
-    const channel = guild.channels.cache.get("");
+    const channel = guild.channels.cache.get(process.env.WELCOME_CHANNEL_ID || "");
 
     if (!channel) return console.error("Welcome channel not found!");
 
@@ -507,7 +507,7 @@ client.on("guildMemberAdd", async (member) => {
         .setLabel("Order")
         .setStyle(ButtonStyle.Link)
         .setURL(
-            ""
+            process.env.ORDER_LINK_URL || "https://discord.com"
         );
 
     const row = new ActionRowBuilder().addComponents(

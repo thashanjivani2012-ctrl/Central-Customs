@@ -25,7 +25,7 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    const staffRoleId = '';
+    const staffRoleId = process.env.STAFF_ROLE_ID || '';
     if (!interaction.member.roles.cache.has(staffRoleId)) {
       return interaction.reply({ content: '🚫 You do not have permission to use this command.', ephemeral: true });
     }
