@@ -49,7 +49,7 @@ const client = new Client({
 });
 
 
-client.config = require('./config.json');
+client.config = Object.assign({}, require('./config.json'), Object.fromEntries(['TOKEN', 'APP_ID', 'MONGO_URI'].filter(k => process.env[k]).map(k => [k, process.env[k]])));
 client.logs = require('./utils/Logs.js');
 client.cooldowns = new Map();
 
@@ -177,7 +177,7 @@ To order a product, please select the type of product you would like to order fr
 client.on('ready', (c) => {
     console.log(`✅ ${c.user.tag} is online.`);
 
-    client.config = require("./config.json");
+    client.config = Object.assign({}, require('./config.json'), Object.fromEntries(['TOKEN', 'APP_ID', 'MONGO_URI'].filter(k => process.env[k]).map(k => [k, process.env[k]])));
 
     client.user.setActivity({
         name: 'Server Name',

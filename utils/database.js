@@ -4,16 +4,15 @@ const path = require('path');
 
 const configPath = path.join(__dirname, '..', 'config.json');
 
-if (!fs.existsSync(configPath)) {
-    console.error('❌ config.json not found. Please create one in the project root.');
-    process.exit(1);
-}
+let MONGO_URI = process.env.MONGO_URI || process.env.MONGO_URL;
 
-const { MONGO_URI } = require(configPath);
+if (!MONGO_URI && fs.existsSync(configPath)) {
+    ({ MONGO_URI } = require(configPath));
+}
 
 const connectDatabase = async () => {
     if (!MONGO_URI) {
-        console.error('❌ MONGO_URI not found in config.json.');
+        console.error('❌ MONGO_URI not found in environment or config.json.');
         process.exit(1);
     }
 
