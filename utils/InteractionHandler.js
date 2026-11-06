@@ -87,16 +87,18 @@ async function InteractionHandler(client, interaction, type) {
         return;
     }
 
-    try {
-        const botMember = interaction.guild.members.cache.get(client.user.id) ?? await interaction.guild.members.fetch(client.user.id);
-        CheckPermissions(component.clientPerms, botMember);
-    } catch (permissions) {
-        await interaction.reply({
-            content: `I am missing the following permissions: \`${permissions}\``,
-            ephemeral: true
-        }).catch(() => { });
-        client.logs.error(`Could not execute ${type}: Missing bot permissions`);
-        return;
+    if (Array.isArray(component.clientPerms) && component.clientPerms.length > 0 && interaction.guild) {
+        try {
+            const botMember = interaction.guild.members.me ?? await interaction.guild.members.fetch(client.user.id);
+            CheckPermissions(component.clientPerms, botMember);
+        } catch (permissions) {
+            await interaction.reply({
+                content: `I am missing the following permissions: \`${permissions}\``,
+                ephemeral: true
+            }).catch(() => { });
+            client.logs.error(`Could not execute ${type}: Missing bot permissions (${permissions})`);
+            return;
+        }
     }
 
     try {
