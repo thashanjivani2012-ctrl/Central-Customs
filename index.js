@@ -2,8 +2,6 @@ require('./utils/ProcessHandlers.js')();
 
 const PREFIX = '-';
 
-const specificChannelId3 = process.env.SUPPORT_PANEL_CHANNEL_ID || '';
-const specificChannelId = process.env.ORDER_PANEL_CHANNEL_ID || '';
 
 const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, StringSelectMenuBuilder } = require(`discord.js`);
 
@@ -60,118 +58,6 @@ require('./utils/RegisterCommands.js')(client);
 client.logs.info(`Logging in...`);
 client.login(client.config.TOKEN);
 client.on('ready', function () {
-});
-
-client.once('ready', async () => {
-
-    const specificChannel3 = await client.channels.fetch(specificChannelId3);
-    if (!specificChannel3) {
-        console.error(`Channel with ID ${specificChannelId3} not found`);
-        return;
-    }
-
-    const imageembed = new EmbedBuilder()
-        .setColor(`#`)
-        .setImage(``);
-
-    const textembed = new EmbedBuilder()
-        .setColor(`#`)
-        .setImage(``)
-        .setDescription(`# Server Name Support Panel
-        
-> Welcome to **Server Name Support Panel!** If you need assistance, please open a ticket under the category that best matches your situation. If you're unsure which category to choose, the descriptions below outline what each one covers to help you decide:
-        
-**General Support**
-- General Questions
-- General Inquiries
-- Applications
-- Partnership
-
-**High Rank Support**
-- Giveaway Claims
-- Shop Purchases
-- Reports/Appeals
-- Major Inquiries
-- Design Team App
-- Support Team App`)
-        .setTimestamp();
-
-    const select = new StringSelectMenuBuilder()
-        .setCustomId('starter')
-        .setPlaceholder('Make a ticket selection!')
-        .addOptions([
-            {
-                label: 'General Support',
-                value: 'general_support',
-            },
-            {
-                label: 'High Rank Support',
-                value: 'high_rank_support',
-            }
-        ]);
-
-    const row = new ActionRowBuilder()
-        .addComponents(select);
-
-    await specificChannel3.send({
-        embeds: [imageembed, textembed],
-        components: [row],
-    });
-});
-
-client.once('ready', async () => {
-
-    const specificChannel = await client.channels.fetch(specificChannelId);
-    if (!specificChannel) {
-        console.error(`Channel with ID ${specificChannelId} not found`);
-        return;
-    }
-
-
-    const embed1 = new EmbedBuilder()
-        .setColor('#')
-        .setImage(``)
-
-    const embed2 = new EmbedBuilder()
-        .setColor('#')
-        .setImage(``)
-        .setDescription(`# Server Name Order Panel
-            
-To order a product, please select the type of product you would like to order from the dropdown menu below. After selecting a product type, a staff member will assist you shortly.`);
-
-    const select2 = new StringSelectMenuBuilder()
-        .setCustomId('starter1')
-        .setPlaceholder('Click here to order a product')
-        .addOptions([
-            {
-                label: 'Livery ( ELS )',
-                value: 'liveryels',
-            },
-            {
-                label: 'Graphic',
-                value: 'graphic',
-            },
-            {
-                label: 'Discord',
-                value: 'discord',
-            },
-            {
-                label: 'Clothing',
-                value: 'clothing',
-            },
-            {
-                label: 'Photographs',
-                value: 'photographs',
-            }
-        ]);
-
-    const select1 = new ActionRowBuilder()
-        .addComponents(select2);
-
-    await specificChannel.send({
-        embeds: [embed1, embed2],
-        components: [select1]
-    });
 });
 
 client.on('ready', (c) => {
